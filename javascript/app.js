@@ -1,7 +1,7 @@
 window.onload = function(){
   function startLocation() {
     var function_name = prompt('function_name ' +
-     '(q - exit, h - help)', 'findOrReplaceFromUrl');
+     '(q - exit, h - help)', 'outputFibonachiInRange');
 
     switch (function_name) {
       case 'makeChessBoard':
@@ -19,6 +19,12 @@ window.onload = function(){
       case 'convertNumberToString':
         convertNumberToString()
         break;
+      case 'outputNaturalNumbersWhereSqareLowerThen':
+        outputNaturalNumbersWhereSqareLowerThen()
+        break;
+      case 'outputFibonachiInRange':
+        outputFibonachiInRange()
+        break;
       case 'q':
         break;
       case 'h':
@@ -26,7 +32,9 @@ window.onload = function(){
          'input analysisOfEnvelopes<br>' +
          'input sortTriangles<br>' + 
          'input findOrReplaceFromUrl<br>' +
-         'input convertNumberToString<br>')
+         'input convertNumberToString<br>' +
+         'input outputNaturalNumbersWhereSqareLowerThen<br>' +
+         'input outputFibonachiInRange<br>')
         break;
       default:
         alert( 'The ' + function_name + ' function is undefined' );
@@ -205,6 +213,25 @@ window.onload = function(){
     return A3[a - 1] + ' ' + A1[b - 1];         
   }
 
+  function outputNaturalNumbersWhereSqareLowerThen() {
+    var number = Math.round(+prompt('number', 10));
+    var params = [];
+    params.push(number);
+    if (!validateNumberParams(params)) return;
+    for (var i = 1; number > (i * i); i++) {
+      console.log(i);
+    }
+  }
+
+  function outputFibonachiInRange() {
+    var start_range = Math.round(+prompt('start range', 10));
+    var end_range = Math.round(+prompt('end range', 100));
+    var params = [start_range, end_range];
+    if (!validateNumberParams(params)) return;
+    for (var i = start_range; (i + i - 1) < end_range; i = (i + i - 1)) {
+      console.log(i + i - 1);
+    }
+  }
 
   function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
