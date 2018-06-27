@@ -1,7 +1,7 @@
 window.onload = function(){
   function startLocation() {
     var function_name = prompt('function_name ' +
-     '(q - exit, h - help)', 'sortTriangles');
+     '(q - exit, h - help)', 'findOrReplaceFromUrl');
 
     switch (function_name) {
       case 'makeChessBoard':
@@ -13,12 +13,20 @@ window.onload = function(){
       case 'sortTriangles':
         sortTriangles()
         break;
+      case 'findOrReplaceFromUrl':
+        findOrReplaceFromUrl()
+        break;
+      case 'convertNumberToString':
+        convertNumberToString()
+        break;
       case 'q':
         break;
       case 'h':
         alert( 'input makeChessBoard to make chess board<br>' +
          'input analysisOfEnvelopes<br>' +
-         'input sortTriangles')
+         'input sortTriangles<br>' + 
+         'input findOrReplaceFromUrl<br>' +
+         'input convertNumberToString<br>')
         break;
       default:
         alert( 'The ' + function_name + ' function is undefined' );
@@ -110,11 +118,11 @@ window.onload = function(){
     this.side2 = +prompt('Triangle side2', 3);
     this.side3 = +prompt('Triangle side3', 3);
     params = [this.side1, this.side2, this.side3];
-    // if (!validateNumberParams(params)) return;
+    if (!validateNumberParams(params)) return;
     this.triangle_p = +(1 / 2 * (this.side1 + this.side2 + this.side3)).toFixed(2);
-    this.triangle_v1 = this.triangle_p * (this.triangle_p - this.side1) * (this.triangle_p - this.side2) * (this.triangle_p - this.side3)
-    this.triangle_v = +(Math.sqrt(x).toFixed(2);
-    alert( this.triangle_v );
+    this.triangle_v1 = this.triangle_p * (this.triangle_p - this.side1) *
+     (this.triangle_p - this.side2) * (this.triangle_p - this.side3);
+    this.triangle_v = +(Math.sqrt(this.triangle_v1).toFixed(2));
   }
 
   function compareTriangleV(triangleA, triangleB) {
@@ -130,6 +138,73 @@ window.onload = function(){
       }
     }
   }
+
+  function findOrReplaceFromUrl() {
+    this.input = prompt('Url to parse, string to find', 
+      'https://learn.javascript.ru/ajax-xmlhttprequest, string_to_find');
+    this.url = input.split(', ')[0]
+    this.url_text = getUrlText(url)
+    this.string_to_find = input.split(', ')[1]
+     if (input.split(', ')[2]) {
+      this.string_to_replace = input.split(', ')[2]
+      this.url_text.replace(this.string_to_find, this.string_to_replace)
+    } else {
+      searchStrPositions(url_text, string_to_find);
+    }
+
+  }
+
+  // url = 'https://learn.javascript.ru/ajax-xmlhttprequest'
+
+  function getUrlText(url) {
+    var xhr = new XMLHttpRequest(); //вопрос по CORS и какой метод использовать для решения
+    xhr.open('GET', url, false);
+    xhr.send();
+    if (xhr.status != 200) {
+      alert( xhr.status + ': ' + xhr.statusText );
+    }
+    return xhr.response.match(/<body[a-zA-Z0-9|\s]*<\/body>/); //вопрос по RegEx
+  }
+
+  // getUrlText(url);
+
+  function searchStrPositions(url_text, string_to_find) {
+    var pos = 0;
+    var total_positions = []
+    while (true) {
+      var find_in_position = string_to_find.indexOf(url_text, pos);
+      if (find_in_position == -1) break;
+
+      total_positions.push(find_in_position);
+      pos = find_in_position + 1;
+    }
+    return total_positions.length;
+  }
+
+  function convertNumberToString() {
+    var num = +prompt("Введите число от 1 до 99");
+    if ((isNaN(num)) || (num < 1) || (num > 99) || (parseInt(num) != num)) {
+      alert("Введено неправильное число!"); 
+    } else { 
+      var q = conversionNumberToString(num);
+      alert('Пользователь ввёл: ' + num + " - " + q + ' ');
+    }
+  }
+    
+  function conversionNumberToString(num) {
+    var b = num % 10
+    var a = (num - b) / 10,
+    A1 = ['один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],
+    A2 = ['одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать',
+           'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'],
+    A3 = ['десять', 'двадцать', 'тридцать', 'сорок', 'пятьдесят',
+          'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+    if (num > 1 && num < 10) return A1[num - 1]
+    if (num > 10 && num < 20) return A2[num - 11];
+    if (b == 0) return A3[a - 1];
+    return A3[a - 1] + ' ' + A1[b - 1];         
+  }
+
 
   function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
