@@ -17,10 +17,8 @@ function Triangle(name, side1, side2, side3) {
   params = [this.side1, this.side2, this.side3];
   if (!validateNumberParams(params)) return;
 
-  this.triangle_p = +(1 / 2 * (this.side1 + this.side2 + this.side3)).toFixed(2);
-  this.triangle_v1 = this.triangle_p * (this.triangle_p - this.side1) *
-   (this.triangle_p - this.side2) * (this.triangle_p - this.side3);
-  this.triangle_v = +(Math.sqrt(this.triangle_v1).toFixed(2));
+  this.triangle_p = countTriangle_P(this.side1, this.side2, this.side3);
+  this.triangle_v = countTriangle_V(this.side1, this.side2, this.side3, this.triangle_p);
 }
 
 function compareTriangleV(triangleA, triangleB) {
@@ -59,7 +57,13 @@ function createInputsForTriangle() {
     "</div>";
 
   button = document.querySelector('#submit_button');
-  button.addEventListener('click', submitTriangleForm)
+  button.addEventListener('click', submitTriangleForm);
+
+  user_inputs = document.querySelectorAll('input');
+  user_inputs.forEach(function(el){
+    console.log(el);
+    el.addEventListener('change', validateSidesOfTriangle.bind(el));
+  });
 }
 
 function submitTriangleForm() {
@@ -101,7 +105,7 @@ function returnResults() {
         "]: " + arr_of_triangles[i].triangle_v + " cm </li>";
 
       if (i == 0) {
-        document.querySelector('#content').innerHTML += "</ul>";
+        document.querySelector('#content').innerHTML += "<ul>уууууу</ul>";
       };
 
       setTimeout(outputSingleResult.bind(i), (1000 * i));
@@ -117,6 +121,56 @@ function returnResults() {
   return arr_of_triangles;
 }
 
-// вопросы : в блоке часть кода выполняется раньше
-// вопросы : в каком контексте будет выполнен button.addEventListener('click', submitTriangleForm)
-// вопросы : последняя фигура выходит первой
+function validateSidesOfTriangle() {
+  var side1 = document.querySelector('#triangle_side1').value;
+  var side2 = document.querySelector('#triangle_side2').value;
+  var side3 = document.querySelector('#triangle_side3').value;
+
+  if (this.id == 'triangle_side1'){
+    if ((side3 && side2) && ((side3 + side2) > side1)) {
+      M.toast({html: 'Triangle is Valid'})
+      return 'valid';
+    } else {
+      M.toast({html: 'Triangle Not Valid Yet'})
+      return 'not valid';
+    }
+  }
+
+  if (this.id == 'triangle_side2'){
+    if ((side1 && side3) && ((side1 + side3) > side2)) {
+      M.toast({html: 'Triangle is Valid'})
+      return 'valid';
+    } else {
+      M.toast({html: 'Triangle Not Valid Yet'})
+      return 'not valid';
+    }
+  }
+
+  if (this.id == 'triangle_side3'){
+    if ((side1 && side2) && ((side1 + side2) > side3)) {
+      M.toast({html: 'Triangle is Valid'})
+      return 'valid';
+    } else {
+      M.toast({html: 'Triangle Not Valid Yet'})
+      return 'not valid';
+    }
+  }
+
+  if (side1 && side2 && side3) {
+    triangle_p = countTriangle_P(side1, side2, side3);
+    triangle_v = countTriangle_V(side1, side2, side3, triangle_p);
+    if (triangle_v == 0) {
+      M.toast({html: 'Triangle V can`t be counted'})
+      return 'not valid';
+    }
+  }
+}
+
+function countTriangle_P(side1, side2, side3) {
+  return +(1 / 2 * (side1 + side2 + side3)).toFixed(2);
+}
+
+function countTriangle_V(side1, side2, side3, p) {
+  v1 = p * (p - side1) * (p - side2) * (p - side3);
+  return +(Math.sqrt(this.v1).toFixed(2));
+}
