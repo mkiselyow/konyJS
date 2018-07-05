@@ -1,6 +1,6 @@
 function startLocation() {
   var function_name = prompt('function_name ' +
-   '(q - exit, h - help)', 'outputFibonachiInRange');
+   '(q - exit, h - help)', 'sortTriangles');
 
   switch (function_name) {
     case 'makeChessBoard':
@@ -48,16 +48,6 @@ function validateNumberParams(params) {
       return false;
     }
     return true;
-  }
-}
-
-function wrapFunction(function_name) {
-  while (true) {
-    try {
-      function_name
-    } catch(err) {
-      alert( 'ERROR : ' + err );
-    }
   }
 }
 
