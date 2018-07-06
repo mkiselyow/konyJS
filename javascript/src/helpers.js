@@ -1,44 +1,16 @@
 function startLocation() {
-  var function_name = prompt('function_name ' +
-   '(q - exit, h - help)', 'sortTriangles');
+  button_selectors =[
+    ['#task1', makeChessBoard], 
+    ['#task2', analysisOfEnvelopes], 
+    ['#task3', sortTriangles], 
+    ['#task3', sortTriangles], 
+    ['#task3', sortTriangles],
+    ['#task6', outputNaturalNumbersWhereSqareLowerThen], 
+    ['#task7', outputFibonachiInRange]];
 
-  switch (function_name) {
-    case 'makeChessBoard':
-      makeChessBoard();
-      break;
-    case 'analysisOfEnvelopes':
-      analysisOfEnvelopes()
-      break;
-    case 'sortTriangles':
-      sortTriangles()
-      break;
-    case 'findOrReplaceFromUrl':
-      findOrReplaceFromUrl()
-      break;
-    case 'convertNumberToString':
-      convertNumberToString()
-      break;
-    case 'outputNaturalNumbersWhereSqareLowerThen':
-      outputNaturalNumbersWhereSqareLowerThen()
-      break;
-    case 'outputFibonachiInRange':
-      outputFibonachiInRange()
-      break;
-    case 'q':
-      break;
-    case 'h':
-      alert( 'input makeChessBoard to make chess board<br>' +
-       'input analysisOfEnvelopes<br>' +
-       'input sortTriangles<br>' + 
-       'input findOrReplaceFromUrl<br>' +
-       'input convertNumberToString<br>' +
-       'input outputNaturalNumbersWhereSqareLowerThen<br>' +
-       'input outputFibonachiInRange<br>')
-      break;
-    default:
-      alert( 'The ' + function_name + ' function is undefined' );
-      break;
-  };
+  button_selectors.forEach(function(el){
+    document.querySelector(el[0]).addEventListener('click', el[1]);
+  });
 }
 
 function validateNumberParams(params) {

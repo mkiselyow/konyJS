@@ -12,7 +12,7 @@ function analysisOfEnvelopes(argument) {
         if (!wantToContinue()) return;
       }
 
-      if (Math.max(a, b) > Math.max(c, d) && Math.min(a, b) > Math.min(c, d)) {
+      if ((Math.max(a, b) > Math.max(c, d) && Math.min(a, b) > Math.min(c, d)) || compareEnvelopsV(a, b, c, d)) {
         alert( 'you can put envelop(sides: a, b) in  envelop(sides: c, d)' )
         if (!wantToContinue()) return;
       }
@@ -21,4 +21,16 @@ function analysisOfEnvelopes(argument) {
       alert( 'ERROR : ' + err );
     }
   }
+}
+
+function compareEnvelopsV(a, b, c, d) {
+  a = Math.max(a, b)
+  p = Math.max(c, d)
+  b = Math.min(a, b)
+  q = Math.min(c, d)
+  if (p > a && b >= (2 * p * q * a + (p * p - q * q) * Math.sqrt(p * p + q * q - a * a)) / (p * p + q + q)) {
+    alert( 'The first will fit diagonally into the second' );
+    return true;
+  }
+  return false;
 }
