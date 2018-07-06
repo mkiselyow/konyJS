@@ -44,7 +44,7 @@ function startLocation() {
 function validateNumberParams(params) {
   for (var i =  params.length - 1; i >= 0; i--) {
     if (!isNumeric(params[i])) {
-      alert( params[i] + ' is not correct' )
+      alert( "{status: ‘failed’, reason: ‘ Можно ввести только числовые значения ‘}" )
       return false;
     }
     return true;
@@ -57,7 +57,7 @@ function isNumeric(n) {
 
 function wantToContinue() {
   var answer = prompt('Do you want to continue?(yes/no)', 'yes');
-  if (!(answer.toLowerCase() === 'yes' || answer.toLowerCase() === 'y')) {
+  if (!( typeof(answer) == 'string' && (answer.toLowerCase() === 'yes' || answer.toLowerCase() === 'y'))) {
     return false;
   }
   return true;

@@ -14,9 +14,6 @@ function Triangle(name, side1, side2, side3) {
   this.side2 = +side2;
   this.side3 = +side3;
 
-  params = [this.side1, this.side2, this.side3];
-  if (!validateNumberParams(params)) return;
-
   this.triangle_p = countTriangle_P(this.side1, this.side2, this.side3);
   this.triangle_v = countTriangle_V(this.side1, this.side2, this.side3, this.triangle_p);
 }
@@ -72,6 +69,9 @@ function submitTriangleForm() {
   var side2 = document.querySelector('#triangle_side2').value;
   var side3 = document.querySelector('#triangle_side3').value;
 
+  params = [this.side1, this.side2, this.side3];
+  if (!validateNumberParams(params)) return;
+
   triangle = new Triangle(name, side1, side2, side3);
 
   arr_of_triangles.push(triangle);
@@ -122,9 +122,14 @@ function returnResults() {
 }
 
 function validateSidesOfTriangle() {
-  var side1 = document.querySelector('#triangle_side1').value;
-  var side2 = document.querySelector('#triangle_side2').value;
-  var side3 = document.querySelector('#triangle_side3').value;
+  var side1 = +document.querySelector('#triangle_side1').value;
+  var side2 = +document.querySelector('#triangle_side2').value;
+  var side3 = +document.querySelector('#triangle_side3').value;
+
+  if (isNaN(+document.querySelector('#' + this.id).value)) {
+    M.toast({html: 'Input Only Number'})
+    return 'not valid';
+  }
 
   if (this.id == 'triangle_side1'){
     if ((side3 && side2) && ((side3 + side2) > side1)) {
