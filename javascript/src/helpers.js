@@ -16,7 +16,9 @@ function startLocation() {
 function validateNumberParams(params) {
   for (var i =  params.length - 1; i >= 0; i--) {
     if (!isNumeric(params[i])) {
-      alert( "{status: ‘failed’, reason: ‘ Можно ввести только числовые значения ‘}" )
+      alert( params[i] );
+      alert( params );
+      alert( "{status: ‘failed’, reason: ‘ Можно ввести только числовые значения ‘}" );
       return false;
     }
     return true;

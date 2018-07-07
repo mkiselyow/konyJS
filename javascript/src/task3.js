@@ -16,6 +16,7 @@ function Triangle(name, side1, side2, side3) {
 
   this.triangle_p = countTriangle_P(this.side1, this.side2, this.side3);
   this.triangle_v = countTriangle_V(this.side1, this.side2, this.side3, this.triangle_p);
+  return this;
 }
 
 function compareTriangleV(triangleA, triangleB) {
@@ -61,6 +62,7 @@ function createInputsForTriangle() {
     console.log(el);
     el.addEventListener('change', validateSidesOfTriangle.bind(el));
   });
+  return 'form created';
 }
 
 function submitTriangleForm() {
@@ -69,7 +71,7 @@ function submitTriangleForm() {
   var side2 = document.querySelector('#triangle_side2').value;
   var side3 = document.querySelector('#triangle_side3').value;
 
-  params = [this.side1, this.side2, this.side3];
+  params = [side1, side2, side3];
   if (!validateNumberParams(params)) return;
 
   triangle = new Triangle(name, side1, side2, side3);
@@ -82,6 +84,7 @@ function submitTriangleForm() {
     returnResults();
     arr_of_triangles = [];
   };
+  return arr_of_triangles;
 }
 
 function returnResults() {
@@ -96,20 +99,18 @@ function returnResults() {
       if (i == (arr_of_triangles.length - 1)) {
         document.querySelector('#content').innerHTML += "<ul" + 
           " class='collection with-header'>" +
-          "<li class='collection-header'><h4>Sorted Triangles</h4></li>";
+          "<li class='collection-header'><h4>Sorted Triangles</h4></li></ul>";
       };
 
-      document.querySelector('#content').innerHTML += "<li" +
+      document.querySelector('#content').innerHTML +=  "<ul" + 
+          " class='collection with-header'>" + "<li" +
         " class='collection-item' id='triangle" + i +
         "' style='display:none;'>" + "[" + arr_of_triangles[i].name +
-        "]: " + arr_of_triangles[i].triangle_v + " cm </li>";
-
-      if (i == 0) {
-        document.querySelector('#content').innerHTML += "<ul>уууууу</ul>";
-      };
+        "]: " + arr_of_triangles[i].triangle_v + " cm </li></ul>";
 
       setTimeout(outputSingleResult.bind(i), (1000 * i));
     };
+    return arr_of_triangles;
   };
 
   function outputSingleResult() {
@@ -126,7 +127,7 @@ function validateSidesOfTriangle() {
   var side2 = +document.querySelector('#triangle_side2').value;
   var side3 = +document.querySelector('#triangle_side3').value;
 
-  if (isNaN(+document.querySelector('#' + this.id).value)) {
+  if ((this.id != 'triangle_name') && isNaN(+document.querySelector('#' + this.id).value)) {
     M.toast({html: 'Input Only Number'})
     return 'not valid';
   }
