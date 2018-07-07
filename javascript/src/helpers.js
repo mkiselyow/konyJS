@@ -1,4 +1,5 @@
 function startLocation() {
+  loadStartButtons();
   button_selectors =[
     ['#task1', makeChessBoard], 
     ['#task2', analysisOfEnvelopes], 
@@ -35,4 +36,19 @@ function wantToContinue() {
     return false;
   }
   return true;
+}
+
+function loadStartButtons() {
+  var start_buttons = "hi" +
+    "<div id='content' class='container'>" +
+      "<a class='waves-effect waves-light btn-large' id='task1'>Task 1</a>" +
+      "<a class='waves-effect waves-light btn-large' id='task2'>Task 2</a>" +
+      "<a class='waves-effect waves-light btn-large' id='task3'>Sort Triangles</a>" +
+      "<a class='waves-effect waves-light btn-large' id='task3'>Task 4</a>" +
+      "<a class='waves-effect waves-light btn-large' id='task3'>Task 5</a>" +
+      "<a class='waves-effect waves-light btn-large' id='task6'>Task 6</a>" +
+      "<a class='waves-effect waves-light btn-large' id='task7'>Task 7</a>" +
+    "</div>";
+
+  document.body.insertAdjacentHTML('afterbegin', start_buttons);
 }
