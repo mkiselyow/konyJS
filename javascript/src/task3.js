@@ -72,7 +72,8 @@ function submitTriangleForm() {
   var side3 = document.querySelector('#triangle_side3').value;
 
   params = [side1, side2, side3];
-  if (!validateNumberParams(params)) return;
+  valid = validateNumberParams(params);
+  if (!valid) return;
 
   triangle = new Triangle(name, side1, side2, side3);
 
@@ -128,36 +129,36 @@ function validateSidesOfTriangle() {
   var side3 = +document.querySelector('#triangle_side3').value;
 
   if ((this.id != 'triangle_name') && isNaN(+document.querySelector('#' + this.id).value)) {
-    M.toast({html: 'Input Only Number'})
+    M.toast({html: 'Input Only Number'});
     return 'not valid';
   }
 
   if (this.id == 'triangle_side1'){
     if ((side3 && side2) && ((side3 + side2) > side1)) {
-      M.toast({html: 'Triangle is Valid'})
+      M.toast({html: 'Triangle is Valid'});
       return 'valid';
     } else {
-      M.toast({html: 'Triangle Not Valid Yet'})
+      M.toast({html: 'Triangle Not Valid Yet'});
       return 'not valid';
     }
   }
 
   if (this.id == 'triangle_side2'){
     if ((side1 && side3) && ((side1 + side3) > side2)) {
-      M.toast({html: 'Triangle is Valid'})
+      M.toast({html: 'Triangle is Valid'});
       return 'valid';
     } else {
-      M.toast({html: 'Triangle Not Valid Yet'})
+      M.toast({html: 'Triangle Not Valid Yet'});
       return 'not valid';
     }
   }
 
   if (this.id == 'triangle_side3'){
     if ((side1 && side2) && ((side1 + side2) > side3)) {
-      M.toast({html: 'Triangle is Valid'})
+      M.toast({html: 'Triangle is Valid'});
       return 'valid';
     } else {
-      M.toast({html: 'Triangle Not Valid Yet'})
+      M.toast({html: 'Triangle Not Valid Yet'});
       return 'not valid';
     }
   }
@@ -166,7 +167,7 @@ function validateSidesOfTriangle() {
     triangle_p = countTriangle_P(side1, side2, side3);
     triangle_v = countTriangle_V(side1, side2, side3, triangle_p);
     if (triangle_v == 0) {
-      M.toast({html: 'Triangle V can`t be counted'})
+      M.toast({html: 'Triangle V can`t be counted'});
       return 'not valid';
     }
   }
