@@ -82,18 +82,14 @@ function submitTriangleForm() {
   if (wantToContinue()) {
     sortTriangles();
   } else {
-    returnResults();
+    returnResultsTriangle();
     arr_of_triangles = [];
   };
   return arr_of_triangles;
 }
 
-function returnResults() {
-  function hidePreviousContent() {
-    document.querySelector('.triangle_inputs').innerHTML = '';
-  };
-
-  hidePreviousContent();
+function returnResultsTriangle() {
+  hidePreviousContent.call('.triangle_inputs');
 
   function outputResultsSlowly() {
     for (var i = arr_of_triangles.length - 1; i >= 0; i--) {
@@ -119,7 +115,6 @@ function returnResults() {
   }
 
   outputResultsSlowly();
-  console.log(arr_of_triangles);
   return arr_of_triangles;
 }
 

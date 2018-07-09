@@ -40,13 +40,17 @@ function wantToContinue() {
 function loadStartButtons() {
   var start_buttons = "hi" +
     "<div id='content' class='container'>" +
-      "<a class='waves-effect waves-light btn-large' id='task1'>Chess Board</a>" +
-      "<a class='waves-effect waves-light btn-large' id='task2'>Analysis Of Envelopes</a>" +
-      "<a class='waves-effect waves-light btn-large' id='task3'>Sort Triangles</a>" +
-      "<a class='waves-effect waves-light btn-large' id='task4'>Palindrome</a>" +
-      "<a class='waves-effect waves-light btn-large' id='task5'>Happy tickets</a>" +
-      "<a class='waves-effect waves-light btn-large' id='task6'>Task 6</a>" +
-      "<a class='waves-effect waves-light btn-large' id='task7'>Task 7</a>" +
+      "<div class='row'>" +
+        "<div class='starting_buttons col s4 offset-s4'>" +
+          "<a class='waves-effect waves-light btn-large' id='task1'>Chess Board</a>" +
+          "<a class='waves-effect waves-light btn-large' id='task2'>Analysis Of Envelopes</a>" +
+          "<a class='waves-effect waves-light btn-large' id='task3'>Sort Triangles</a>" +
+          "<a class='waves-effect waves-light btn-large' id='task4'>Palindrome</a>" +
+          "<a class='waves-effect waves-light btn-large' id='task5'>Happy tickets</a>" +
+          "<a class='waves-effect waves-light btn-large' id='task6'>Task 6</a>" +
+          "<a class='waves-effect waves-light btn-large' id='task7'>Task 7</a>" +
+        "</div>" +
+      "</div>" +
     "</div>";
 
   document.body.insertAdjacentHTML('afterbegin', start_buttons);
@@ -55,3 +59,7 @@ function loadStartButtons() {
 function onlyUnique(value, index, self) { 
   return self.indexOf(value) === index;
 }
+
+function hidePreviousContent() {
+  document.querySelector(this).innerHTML = '';
+};

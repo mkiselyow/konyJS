@@ -53,7 +53,7 @@ function submitNumberInput() {
   var results = isAnyPalindrome(current_number);
 
   if (validateInput.call(document.querySelector('#number_to_check'))) {
-    returnResults(results);
+    returnResultsPalindrome(results);
   } else {
     return;
   }
@@ -98,8 +98,8 @@ function searchPalindromsContinue(current_number, i) {
   return long_palindrome.join('');
 }
 
-function returnResults(results) {
-  hidePreviousContent();
+function returnResultsPalindrome(results) {
+  hidePreviousContent.call('.palindrome_inputs');
 
   if (results) {
     document.querySelector('#content').innerHTML += "<ul" + 
@@ -125,7 +125,3 @@ function returnResults(results) {
 function outputSingleResult() {
   $('#results' + this).toggle(2000);
 }
-
-function hidePreviousContent() {
-  document.querySelector('.palindrome_inputs').innerHTML = '';
-};
