@@ -32,7 +32,6 @@ function createInputsForPalindrome() {
 
   user_inputs = document.querySelectorAll('input');
   user_inputs.forEach(function(el){
-    console.log(el);
     el.addEventListener('change', validateInput.bind(el));
   });
   return 'form created';
