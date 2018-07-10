@@ -1,4 +1,5 @@
 function startLocation() {
+  document.querySelector('body').innerHTML = ''
   loadStartButtons();
   button_selectors =[
     ['#task1', makeChessBoard], 
@@ -11,7 +12,9 @@ function startLocation() {
 
   button_selectors.forEach(function(el){
     document.querySelector(el[0]).addEventListener('click', el[1]);
+    document.querySelector(el[0]).addEventListener('click', showBackToMenuButton);
   });
+  return true;
 }
 
 function validateNumberParams(params) {
@@ -54,6 +57,11 @@ function loadStartButtons() {
     "</div>";
 
   document.body.insertAdjacentHTML('afterbegin', start_buttons);
+
+  document.querySelector('body').innerHTML += "" +
+    "<a class='waves-effect waves-light btn-large back_to_menu' style='display:none;'>Back to Menu ?</a>";
+  document.querySelector('.back_to_menu').addEventListener('click', startLocation);
+  return true;
 }
 
 function onlyUnique(value, index, self) { 
@@ -62,4 +70,10 @@ function onlyUnique(value, index, self) {
 
 function hidePreviousContent() {
   document.querySelector(this).innerHTML = '';
+  return true;
 };
+
+function showBackToMenuButton() {
+  document.querySelector('.back_to_menu').style.display = 'inline-block'
+  return true;
+}

@@ -16,3 +16,8 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+
+.back_to_menu {
+  margin-top: 10px;
+  margin-left: 44%;
+}
