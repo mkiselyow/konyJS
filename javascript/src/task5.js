@@ -55,7 +55,9 @@ function countHappyTicketsInInterval(interval) {
     if (new Ticket(i).is_happy_number_meth1) happy_tickets_in_interval_meth1++;
     if (new Ticket(i).is_happy_number_meth2) happy_tickets_in_interval_meth2++;
   }
-  return [happy_tickets_in_interval_meth1, happy_tickets_in_interval_meth2];
+
+  this.happy_tickets_in_interval_meth1 = happy_tickets_in_interval_meth1;
+  this.happy_tickets_in_interval_meth2 = happy_tickets_in_interval_meth2;
 }
 
 function validateTickets() {
@@ -125,7 +127,7 @@ function submitTicketsInput() {
     var start_of_interval = +document.querySelector('#start_of_interval').value;
     var end_of_interval = +document.querySelector('#end_of_interval').value;
 
-    var result = countHappyTicketsInInterval([start_of_interval, end_of_interval]);
+    var result = new countHappyTicketsInInterval([start_of_interval, end_of_interval]);
     renderResultsTickets(result);
     return result;
   }
@@ -145,8 +147,8 @@ function renderResultsTickets(result) {
       "</thead>" +
       "<tbody>" +
         "<tr>" +
-          "<th>" + `${result[0]}` + "</th>" +
-          "<th>" + `${result[1]}` + "</th>" +
+          "<th>" + `${result.happy_tickets_in_interval_meth1}` + "</th>" +
+          "<th>" + `${result.happy_tickets_in_interval_meth2}` + "</th>" +
         "</tr>" +
       "</tbody>" +
     "</table>";

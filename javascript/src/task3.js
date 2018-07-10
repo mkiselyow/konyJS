@@ -16,7 +16,6 @@ function Triangle(name, side1, side2, side3) {
 
   this.triangle_p = countTriangle_P(this.side1, this.side2, this.side3);
   this.triangle_v = countTriangle_V(this.side1, this.side2, this.side3, this.triangle_p);
-  return this;
 }
 
 function compareTriangleV(triangleA, triangleB) {
@@ -32,7 +31,7 @@ function createInputsForTriangle() {
         "<div class='row'>" +
           "<div class='input-field col s6'>" +
             "<input id='triangle_name' type='text' class='validate'>" +
-            "<label for='triangle_name'>Triangle name</label>" +
+            "<label for='triangle_name'>Triangle Tops</label>" +
           "</div>" +
           "<div class='input-field col s6'>" +
             "<input id='triangle_side1' type='text' class='validate'>" +
@@ -125,6 +124,13 @@ function validateSidesOfTriangle() {
 
   if ((this.id != 'triangle_name') && isNaN(+document.querySelector('#' + this.id).value)) {
     M.toast({html: 'Input Only Number'});
+    return 'not valid';
+  }
+
+  if ( (this.id == 'triangle_name') && 
+    document.querySelector('#' + this.id).value.length > 3 ||
+    document.querySelector('#' + this.id).value.length < 3 ) {
+    M.toast({html: 'Triangle can have only 3 tops'});
     return 'not valid';
   }
 

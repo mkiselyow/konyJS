@@ -7,7 +7,7 @@ function startLocation() {
     ['#task3', sortTriangles], 
     ['#task4', isPalindromeOf], 
     ['#task5', areHappyTickets],
-    ['#task6', outputNaturalNumbersWhereSqareLowerThen], 
+    ['#task6', outputNaturalNumbers], 
     ['#task7', outputFibonachiInRange]];
 
   button_selectors.forEach(function(el){
@@ -50,7 +50,7 @@ function loadStartButtons() {
           "<a class='waves-effect waves-light btn-large' id='task3'>Sort Triangles</a>" +
           "<a class='waves-effect waves-light btn-large' id='task4'>Palindrome</a>" +
           "<a class='waves-effect waves-light btn-large' id='task5'>Happy tickets</a>" +
-          "<a class='waves-effect waves-light btn-large' id='task6'>Task 6</a>" +
+          "<a class='waves-effect waves-light btn-large' id='task6'>Natural Numbers</a>" +
           "<a class='waves-effect waves-light btn-large' id='task7'>Task 7</a>" +
         "</div>" +
       "</div>" +

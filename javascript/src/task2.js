@@ -1,3 +1,5 @@
+current_envelops = []
+
 function analysisOfEnvelopes(argument) {
   createInputsForEnvelops();
 }
@@ -11,11 +13,16 @@ function canBePutIntoEachOther() {
   b = Math.min(a, b);
   c = Math.max(c, d);
   d = Math.min(c, d);
+  current_envelops.push(new Envelop('Number 1', a, b));
+  current_envelops.push(new Envelop('Number 2', c, d));
 
-  if (comparingProcess(a, b, c, d) || comparingProcess(c, d, a, b)) {
-    return true;
+  if (comparingProcess(a, b, c, d)) {
+    return current_envelops[1];
+  } else if (comparingProcess(c, d, a, b)) {
+    return current_envelops[0];
+  } else {
+    return false;
   }
-  return false;
 }
 
 function compareEnvelopsV(a, b, c, d) {
@@ -96,7 +103,6 @@ function validateEnvelopsInputs() {
   var b = +document.querySelector('#envelop_side_b').value;
   var c = +document.querySelector('#envelop_side_c').value;
   var d = +document.querySelector('#envelop_side_d').value;
-  console.log(this);
 
   if (this == window) {
     [a, b, c, d].forEach(function(param){
@@ -123,11 +129,15 @@ function outputResultsEnvelops() {
   if (result) {
     document.querySelector('#content').innerHTML += "<ul" + 
       " class='collection with-header'>" +
-      "<li class='collection-header'><h4>Envelops Can Be Put Into Each Other</h4></li></ul>";
+      "<li class='collection-header'><h4>Envelops Can Be Put Into Each Other</h4></li>" +
+      "<li class='collection-item'>" + `${result}` + " can be put inside.</li>" +
+      "</ul>";
   } else {
     document.querySelector('#content').innerHTML += "<ul" + 
       " class='collection with-header'>" +
-      "<li class='collection-header'><h4>Envelops Can`t Be Put Into Each Other</h4></li></ul>";
+      "<li class='collection-header'><h4>Envelops Can`t Be Put Into Each Other</h4></li>" + 
+      "<li class='collection-item'>" + `${Number(result)}` + "</li>" + 
+      "</ul>";
   };
 
   document.querySelector('#content').innerHTML += "<a class='waves-effect waves-light btn-large try_again'>Want To Try Again ?</a>";
@@ -135,4 +145,13 @@ function outputResultsEnvelops() {
   document.querySelector('.try_again').addEventListener('click', analysisOfEnvelopes)
 
   return result;
+}
+
+function Envelop(number, side1, side2) {
+  this.number = number;
+  this.side1 = side1;
+  this.side2 = side2;
+  this.toString = function() {
+    return this.number;
+  };
 }
