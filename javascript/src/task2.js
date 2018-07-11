@@ -9,16 +9,16 @@ function canBePutIntoEachOther() {
   var b = +document.querySelector('#envelop_side_b').value;
   var c = +document.querySelector('#envelop_side_c').value;
   var d = +document.querySelector('#envelop_side_d').value;
-  a = Math.max(a, b);
-  b = Math.min(a, b);
-  c = Math.max(c, d);
-  d = Math.min(c, d);
-  current_envelops.push(new Envelop('Number 1', a, b));
-  current_envelops.push(new Envelop('Number 2', c, d));
+  env1_side1 = Math.max(a, b);
+  env1_side2 = Math.min(a, b);
+  env2_side1 = Math.max(c, d);
+  env2_side2 = Math.min(c, d);
+  current_envelops.push(new Envelop('Number 1', env1_side1, env1_side2));
+  current_envelops.push(new Envelop('Number 2', env2_side1, env2_side2));
 
-  if (comparingProcess(a, b, c, d)) {
+  if (comparingProcess(env1_side1, env1_side2, env2_side1, env2_side2)) {
     return current_envelops[1];
-  } else if (comparingProcess(c, d, a, b)) {
+  } else if (comparingProcess(env2_side1, env2_side2, env1_side1, env1_side2)) {
     return current_envelops[0];
   } else {
     return false;

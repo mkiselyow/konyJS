@@ -60,6 +60,8 @@ function submitNumberInput() {
   return results;
 }
 
+var available_palindroms = [];
+
 function isAnyPalindrome(current_number) {
   current_number = String(current_number)
 
@@ -70,12 +72,13 @@ function isAnyPalindrome(current_number) {
       // console.log(`${current_number} has ${current_comparing} substring`);
       searchPalindromsContinue(current_number, i);
     } else {
-      return false;
       // console.log(`${current_number} has no ${current_comparing} substring`);
     }
   }
   return available_palindroms.filter(onlyUnique);
 }
+
+isAnyPalindrome(current_number)
 
 function searchPalindromsContinue(current_number, i) {
   var long_palindrome = [];
