@@ -128,8 +128,7 @@ function validateSidesOfTriangle() {
   }
 
   if ( (this.id == 'triangle_name') && 
-    document.querySelector('#' + this.id).value.length > 3 ||
-    document.querySelector('#' + this.id).value.length < 3 ) {
+    document.querySelector('#' + this.id).value.length != 3) {
     M.toast({html: 'Triangle can have only 3 tops'});
     return 'not valid';
   }
