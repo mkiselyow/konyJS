@@ -41,7 +41,7 @@ function wantToContinue() {
 }
 
 function loadStartButtons() {
-  var start_buttons = "hi" +
+  var start_buttons = "" +
     "<div id='content' class='container'>" +
       "<div class='row'>" +
         "<div class='starting_buttons col s4 offset-s4'>" +
